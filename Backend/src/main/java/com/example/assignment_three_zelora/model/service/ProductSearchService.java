@@ -1,9 +1,11 @@
 package com.example.assignment_three_zelora.model.service;
 
 import com.example.assignment_three_zelora.model.entitys.Product;
+import com.example.assignment_three_zelora.model.repos.ProductRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,9 +15,22 @@ import java.util.List;
 @Service
 public class ProductSearchService {
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
 
+    // -----------------------------
+    // GET PRODUCTS BY CATEGORY
+    // -----------------------------
+    public List<Product> getProductsByCategory(Integer categoryId) {
+        return productRepository.findByCategoryId_CategoryId(categoryId);
+    }
+
+    // -----------------------------
+    // SEARCH FUNCTION
+    // -----------------------------
     public List<Product> search(
             String name,
             String category,

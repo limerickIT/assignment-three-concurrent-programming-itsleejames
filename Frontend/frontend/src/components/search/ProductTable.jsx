@@ -1,32 +1,48 @@
 import React from "react";
+import Table from "react-bootstrap/Table";
 
-const ProductTable = ({ results }) => {
-    if (!Array.isArray(results)) return <p>No results</p>;
+export default function ProductTable({ results }) {
+    if (!Array.isArray(results)) return <p>No results.</p>;
 
     return (
-        <table className="table table-striped mt-4">
+        <Table striped bordered hover responsive className="mt-4">
             <thead>
             <tr>
-                <th>ID</th>
+                <th>Image</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Price (€)</th>
                 <th>Category</th>
+                <th>Price (€)</th>
+                <th>Manufacturer</th>
             </tr>
             </thead>
             <tbody>
-            {results.map((p) => (
-                <tr key={p.productId}>
-                    <td>{p.productId}</td>
-                    <td>{p.productName}</td>
-                    <td>{p.description}</td>
-                    <td>{p.price}</td>
-                    <td>{p.categoryId?.categoryName || "N/A"}</td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
-    );
-};
+            {results.map((product) => {
+                const imageUrl = `http://localhost:8080/images/thumbs/${product.productId}/${product.featureImage}`;
 
-export default ProductTable;
+                return (
+                    <tr key={product.productId}>
+                        <td style={{ width: "120px" }}>
+                            <img
+                                src={imageUrl}
+                                alt={product.productName}
+                                style={{
+                                    width: "100px",
+                                    height: "100px",
+                                    objectFit: "cover",
+                                    borderRadius: "6px",
+                                }}
+                                onError={(e) => (e.target.src = "/placeholder.png")}
+                            />
+                        </td>
+
+                        <td>{product.productName}</td>
+                        <td>{product.categoryId?.categoryName || "N/A"}</td>
+                        <td>{product.price}</td>
+                        <td>{product.manufacturer}</td>
+                    </tr>
+                );
+            })}
+            </tbody>
+        </Table>
+    );
+}

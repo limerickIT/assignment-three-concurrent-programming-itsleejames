@@ -1,20 +1,17 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
-import CategoryPage from "./pages/CategoryPage";
-import CategoryProducts from "./pages/CategoryProducts";
+import Routes from "./Routes";
+import MainNavbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
-function App() {
+export default function App() {
     return (
+        <>
+            <MainNavbar />
 
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/search" element={<SearchPage />} />
-                <Route path="/categories" element={<CategoryPage />} />
-                <Route path="/category/:id" element={<CategoryProducts />} />
-            </Routes>
+            <div className="content-wrapper">
+                <Routes />
+            </div>
 
+            <Footer />
+        </>
     );
 }
-
-export default App;

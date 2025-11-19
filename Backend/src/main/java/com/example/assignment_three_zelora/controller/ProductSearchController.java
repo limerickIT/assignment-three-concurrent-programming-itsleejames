@@ -26,4 +26,9 @@ public class ProductSearchController {
     ) {
         return searchService.search(name, category, minPrice, maxPrice, keywords, recentOnly);
     }
+
+    @GetMapping("/category/{id}")
+    public List<Product> getByCategory(@PathVariable Integer id) {
+        return searchService.getProductsByCategory(id);
+    }
 }
