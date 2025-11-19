@@ -1,20 +1,20 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
-import NavBar from "./components/layout/NavBar";
-import Footer from "./components/layout/Footer";
+import CategoryPage from "./pages/CategoryPage";
+import CategoryProducts from "./pages/CategoryProducts";
 
-export default function App() {
+function App() {
     return (
-        <>
-            <NavBar />
-            <div className="container mt-4">
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/search" element={<SearchPage />} />
-                </Routes>
-            </div>
-            <Footer />
-        </>
+
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/categories" element={<CategoryPage />} />
+                <Route path="/category/:id" element={<CategoryProducts />} />
+            </Routes>
+
     );
 }
+
+export default App;

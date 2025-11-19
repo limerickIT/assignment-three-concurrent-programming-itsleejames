@@ -13,6 +13,7 @@ export default function MainNavbar() {
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/search">Search</Nav.Link>
+                        <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
