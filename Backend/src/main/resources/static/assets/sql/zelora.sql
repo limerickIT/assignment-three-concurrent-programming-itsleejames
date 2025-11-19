@@ -6,7 +6,7 @@
 -- Generation Time: Nov 13, 2025 at 03:06 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
-create database zelora;
+
 use zelora;
 
 
