@@ -1,24 +1,33 @@
-import { useState } from "react";
-import api from "./api/client";
+import { Routes, Route } from "react-router-dom";
+
+// Layout
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+
+// Pages
+import SearchPage from "./pages/SearchPage";
+import ProductPage from "./pages/ProductPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
-    const [message, setMessage] = useState("");
-
-    const testConnection = async () => {
-        try {
-            const res = await api.get("/test");
-            setMessage(res.data);
-        } catch (err) {
-            setMessage("ERROR connecting to backend");
-            console.error(err);
-        }
-    };
-
     return (
-        <div style={{ padding: 20 }}>
-            <h1>Zelora React App</h1>
-            <button onClick={testConnection}>Test Backend Connection</button>
-            <p>{message}</p>
+        <div className="d-flex flex-column min-vh-100">
+
+            {/* Header */}
+            <Navbar />
+
+            {/* Page Content */}
+            <main className="flex-grow-1 container py-4">
+                <Routes>
+                    <Route path="/" element={<SearchPage />} />
+                    <Route path="/product/:id" element={<ProductPage />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </main>
+
+            {/* Footer */}
+            <Footer />
+
         </div>
     );
 }
