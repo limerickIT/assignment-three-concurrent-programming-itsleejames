@@ -1,0 +1,59 @@
+.zelora-footer {
+    background: #111;
+    color: #fff;
+    margin-top: 80px;
+    font-family: "Poppins", sans-serif;
+}
+
+.footer-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-heading {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: #cccccc;
+    transition: 0.2s;
+}
+
+.footer-list li:hover {
+    color: #fff;
+    padding-left: 3px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.social-icons svg {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.social-icons svg:hover {
+    color: #e8e8e8;
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    background: #000;
+    text-align: center;
+    padding: 10px 0;
+    color: #aaa;
+    font-size: 14px;
+}

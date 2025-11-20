@@ -5,7 +5,6 @@ import com.example.assignment_three_zelora.model.repos.ProductRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,22 +14,26 @@ import java.util.List;
 @Service
 public class ProductSearchService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    // -----------------------------
-    // GET PRODUCTS BY CATEGORY
-    // -----------------------------
+    public ProductSearchService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    // 🔥 NEW — returns ALL products
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    // 🔥 NEW — returns all products for a category
     public List<Product> getProductsByCategory(Integer categoryId) {
         return productRepository.findByCategoryId_CategoryId(categoryId);
     }
 
-    // -----------------------------
-    // SEARCH FUNCTION
-    // -----------------------------
+    // 🔥 Search engine
     public List<Product> search(
             String name,
             String category,

@@ -2,7 +2,6 @@ package com.example.assignment_three_zelora.controller;
 
 import com.example.assignment_three_zelora.model.entitys.Product;
 import com.example.assignment_three_zelora.model.service.ProductSearchService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class ProductSearchController {
 
-    @Autowired
-    private ProductSearchService searchService;
+    private final ProductSearchService searchService;
+
+    public ProductSearchController(ProductSearchService searchService) {
+        this.searchService = searchService;
+    }
 
     @GetMapping("/search")
     public List<Product> search(
@@ -27,8 +29,15 @@ public class ProductSearchController {
         return searchService.search(name, category, minPrice, maxPrice, keywords, recentOnly);
     }
 
+
+    @GetMapping
+    public List<Product> getAllProducts() {
+        return searchService.getAllProducts();
+    }
+
     @GetMapping("/category/{id}")
     public List<Product> getByCategory(@PathVariable Integer id) {
         return searchService.getProductsByCategory(id);
     }
+
 }

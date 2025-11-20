@@ -1,5 +1,6 @@
 package com.example.assignment_three_zelora.model.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -12,6 +13,8 @@ public class Inventory implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "inventory_id")
+    @JsonIgnore
+
     private Integer inventoryId;
    
     @Column(name = "quantity_in_stock")
@@ -25,10 +28,14 @@ public class Inventory implements Serializable {
    
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     @ManyToOne
+    @JsonIgnore
+
     private Product productId;
     
     @JoinColumn(name = "supplier_id", referencedColumnName = "supplier_id")
     @ManyToOne
+    @JsonIgnore
+
     private Supplier supplierId;
 
 

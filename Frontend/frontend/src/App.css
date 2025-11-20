@@ -84,3 +84,21 @@ body {
     padding-top: 120px !important;
   }
 }
+
+.trending-section {
+  margin-top: 60px;
+}
+
+.trending-card {
+  transition: transform 0.3s ease;
+}
+
+.trending-card:hover {
+  transform: scale(1.03);
+}
+
+.trending-img {
+  height: 420px;
+  object-fit: cover;
+  border-radius: 6px;
+}

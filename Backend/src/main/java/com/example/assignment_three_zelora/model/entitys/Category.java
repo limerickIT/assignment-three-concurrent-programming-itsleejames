@@ -19,7 +19,7 @@ public class Category implements Serializable {
     @Column(name = "category_image")
     private String categoryImage;
 
-    @JsonIgnore
+    @JsonIgnore   // ⛔ IMPORTANT
     @OneToMany(mappedBy = "categoryId")
     private List<Product> productList;
 
