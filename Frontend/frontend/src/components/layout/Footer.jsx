@@ -10,7 +10,7 @@ export default function Footer() {
                 <Row>
                     <Col md={4} sm={12} className="mb-4">
                         <h5 className="footer-title">ZELORA</h5>
-                        <p className="text-muted">
+                        <p>
                             Fashion, sustainability & style – curated for you.
                         </p>
 
