@@ -1,0 +1,11 @@
+/* FIX NAVBAR OVERLAP */
+body {
+    padding-top: 90px !important;
+}
+
+/* On smaller screens navbar becomes taller */
+@media (max-width: 768px) {
+    body {
+        padding-top: 120px !important;
+    }
+}
