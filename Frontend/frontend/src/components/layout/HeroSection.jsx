@@ -22,8 +22,8 @@ export default function HeroSection() {
                 <h1 className="hero-title">SUSTAINABLE FASHION</h1>
 
                 <div className="hero-buttons mt-4">
-                    <a href="/men" className="btn btn-light btn-lg mx-2">Men’s gifting</a>
-                    <a href="/women" className="btn btn-light btn-lg mx-2">Women’s gifting</a>
+                    <a href="/categories/1" className="btn btn-light btn-lg mx-2">Shop Men's</a>
+                    <a href="/categories/2" className="btn btn-light btn-lg mx-2">Shop Women’s</a>
                     <a href="/categories" className="btn btn-outline-light btn-lg mx-2">Shop the collection</a>
                 </div>
             </div>

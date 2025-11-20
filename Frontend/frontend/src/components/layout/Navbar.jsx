@@ -15,7 +15,11 @@ export default function MainNavbar() {
                     <Nav className="ms-auto align-items-center">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/search">Search</Nav.Link>
+                        <Nav.Link as={Link} to="/categories/1">Men</Nav.Link>
+                        <Nav.Link as={Link} to="/categories/2">Women</Nav.Link>
                         <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
+
+
 
                         <Nav.Link as={Link} to="/profile" className="ms-3">
                             <FaUser size={18} />
