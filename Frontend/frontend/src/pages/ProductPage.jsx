@@ -1,7 +1,163 @@
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
+
 export default function ProductPage() {
+    const { id } = useParams();
+    const [detail, setDetail] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get(`http://localhost:8080/api/products/${id}/detail`)
+            .then((res) => {
+                console.log("PRODUCT DETAIL:", res.data);
+                setDetail(res.data);
+            })
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, [id]);
+
+    if (loading || !detail) {
+        return <p className="text-center mt-5">Loading...</p>;
+    }
+
+    const {
+        productId,
+        productName,
+        description,
+        displayPrice,
+        price,
+        discountedPrice,
+        discounted,
+        featureImage,
+        categoryName,
+        sustainabilityRating,
+        manufacturer,
+        averageRating,
+        totalReviews,
+        reviews,
+        availableQuantity,
+        stockMessage,
+    } = detail;
+
     return (
-        <div>
-            <h1>Product Details</h1>
-        </div>
+        <Container className="py-5">
+            <Row>
+                {/* IMAGE */}
+                <Col md={6}>
+                    <Card className="shadow-sm">
+                        <Card.Img
+                            variant="top"
+                            src={`http://localhost:8080/images/thumbs/${productId}/${featureImage}`}
+                            alt={productName}
+                            onError={(e) => {
+                                console.error("IMAGE FAILED:", e.target.src);
+                                e.target.src = "https://via.placeholder.com/600x600?text=No+Image";
+                            }}
+                        />
+                    </Card>
+                </Col>
+
+                {/* MAIN INFO */}
+                <Col md={6}>
+                    <h2 className="fw-bold mb-2">{productName}</h2>
+
+                    {categoryName && (
+                        <p className="text-muted mb-1">
+                            Category: <strong>{categoryName}</strong>
+                        </p>
+                    )}
+
+                    {manufacturer && (
+                        <p className="text-muted mb-3">
+                            Manufacturer: <strong>{manufacturer}</strong>
+                        </p>
+                    )}
+
+                    {sustainabilityRating && (
+                        <p className="mb-3">
+                            Sustainability rating:{" "}
+                            <Badge bg="success">{sustainabilityRating}/5</Badge>
+                        </p>
+                    )}
+
+                    {/* PRICE */}
+                    <div className="mb-3">
+                        {discounted && discountedPrice ? (
+                            <>
+                <span className="text-muted text-decoration-line-through me-2">
+                  €{price}
+                </span>
+                                <span className="h4 text-success mb-0">€{discountedPrice}</span>
+                            </>
+                        ) : (
+                            <span className="h4 text-success mb-0">€{price}</span>
+                        )}
+                    </div>
+
+                    {/* RATING SUMMARY */}
+                    <div className="mb-3">
+                        {totalReviews > 0 ? (
+                            <p className="mb-0">
+                                Average rating:{" "}
+                                <strong>{averageRating.toFixed(1)} / 5</strong>{" "}
+                                <span className="text-muted">({totalReviews} reviews)</span>
+                            </p>
+                        ) : (
+                            <p className="text-muted mb-0">No reviews yet.</p>
+                        )}
+                    </div>
+
+                    {/* STOCK INFO */}
+                    <div className="mb-4">
+                        <p className="fw-semibold">
+                            {stockMessage}{" "}
+                            {availableQuantity != null && availableQuantity > 0 && (
+                                <span className="text-muted">({availableQuantity} units)</span>
+                            )}
+                        </p>
+                    </div>
+
+                    <p className="mb-4">{description}</p>
+
+                    <Button variant="primary" size="lg">
+                        Add to Cart
+                    </Button>
+                </Col>
+            </Row>
+
+            {/* REVIEWS SECTION */}
+            <Row className="mt-5">
+                <Col md={12}>
+                    <h3 className="fw-bold mb-3">Customer Reviews</h3>
+
+                    {!reviews || reviews.length === 0 ? (
+                        <p className="text-muted">No reviews found with rating 3 or higher.</p>
+                    ) : (
+                        reviews.map((r, index) => (
+                            <Card className="mb-3 shadow-sm" key={index}>
+                                <Card.Body>
+                                    <div className="d-flex justify-content-between align-items-center mb-2">
+                                        <div>
+                                            <strong>{r.customerFirstName || "Customer"}</strong>
+                                            {r.customerCity && (
+                                                <span className="text-muted ms-2">({r.customerCity})</span>
+                                            )}
+                                        </div>
+                                        <Badge bg="warning" text="dark">
+                                            {r.rating} / 5
+                                        </Badge>
+                                    </div>
+                                    <p className="mb-1">{r.reviewText}</p>
+                                </Card.Body>
+                            </Card>
+                        ))
+                    )}
+                </Col>
+            </Row>
+        </Container>
     );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 export default function CategoryProductsPage() {
     const { id } = useParams();
@@ -22,9 +22,7 @@ export default function CategoryProductsPage() {
             <h2 className="mb-4 fw-bold">Category Products</h2>
 
             <Row>
-                {products.length === 0 && (
-                    <p>No products found.</p>
-                )}
+                {products.length === 0 && <p>No products found.</p>}
 
                 {products.map((product) => (
                     <Col md={4} lg={3} sm={6} className="mb-4" key={product.productId}>
@@ -32,11 +30,21 @@ export default function CategoryProductsPage() {
                             <Card.Img
                                 variant="top"
                                 src={`http://localhost:8080/images/thumbs/${product.productId}/${product.featureImage}`}
+                                alt={product.productName}
                             />
 
-                            <Card.Body>
+                            <Card.Body className="d-flex flex-column">
                                 <Card.Title>{product.productName}</Card.Title>
-                                <p>€{product.price}</p>
+                                <p className="mb-3">€{product.price}</p>
+
+                                <Button
+                                    as={Link}
+                                    to={`/product/${product.productId}`}
+                                    variant="primary"
+                                    className="mt-auto"
+                                >
+                                    View
+                                </Button>
                             </Card.Body>
                         </Card>
                     </Col>

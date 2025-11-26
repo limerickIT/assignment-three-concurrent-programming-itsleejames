@@ -21,7 +21,7 @@ export default function MainNavbar() {
 
 
 
-                        <Nav.Link as={Link} to="/profile" className="ms-3">
+                        <Nav.Link as={Link} to="/login" className="ms-3">
                             <FaUser size={18} />
                         </Nav.Link>
 

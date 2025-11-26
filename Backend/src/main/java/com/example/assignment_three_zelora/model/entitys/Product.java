@@ -76,6 +76,8 @@ public class Product implements Serializable {
 
     public Product() {}
 
+    // ----------------- GETTERS -----------------
+
     public Integer getProductId() { return productId; }
     public String getProductName() { return productName; }
     public String getDescription() { return description; }
@@ -91,6 +93,14 @@ public class Product implements Serializable {
     public Supplier getSupplierId() { return supplierId; }
     public Category getCategoryId() { return categoryId; }
 
+
+    public List<Review> getReviewList() { return reviewList; }
+    public List<Inventory> getInventoryList() { return inventoryList; }
+    public List<Orderitem> getOrderitemList() { return orderitemList; }
+    public List<Wishlist> getWishlistList() { return wishlistList; }
+
+    // ----------------- SETTERS -----------------
+
     public void setProductId(Integer productId) { this.productId = productId; }
     public void setProductName(String productName) { this.productName = productName; }
     public void setDescription(String description) { this.description = description; }
@@ -105,4 +115,9 @@ public class Product implements Serializable {
     public void setFeatureImage(String featureImage) { this.featureImage = featureImage; }
     public void setSupplierId(Supplier supplierId) { this.supplierId = supplierId; }
     public void setCategoryId(Category categoryId) { this.categoryId = categoryId; }
+
+    public void setReviewList(List<Review> reviewList) { this.reviewList = reviewList; }
+    public void setInventoryList(List<Inventory> inventoryList) { this.inventoryList = inventoryList; }
+    public void setOrderitemList(List<Orderitem> orderitemList) { this.orderitemList = orderitemList; }
+    public void setWishlistList(List<Wishlist> wishlistList) { this.wishlistList = wishlistList; }
 }

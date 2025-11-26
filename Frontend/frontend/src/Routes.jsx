@@ -6,6 +6,8 @@ import SearchPage from "./pages/SearchPage";
 import CategoriesPage from "./pages/CategoryPage";
 import CategoryProductsPage from "./pages/CategoryProductsPage";
 import CartPage from "./pages/CartPage.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
 export default function AppRoutes() {
     return (
@@ -15,6 +17,10 @@ export default function AppRoutes() {
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/categories/:id" element={<CategoryProductsPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/login" element={<LoginPage />} />
+
+
 
         </Routes>
     );
