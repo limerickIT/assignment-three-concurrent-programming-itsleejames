@@ -6,20 +6,34 @@ import WomenSection from "../components/layout/WomensSection.jsx";
 import FootwearSection from "../components/layout/FootwearSection.jsx";
 import PromoBanner from "../components/layout/PromoBanner.jsx";
 
+import FadeIn from "../components/animations/FadeIn";
+
 export default function HomePage() {
     return (
         <>
-            <HeroSection />
-            <WomenSection />
-            <TrendingNow />
-            <ShopForMen />
-            <FootwearSection />
-            <PromoBanner />
+            <FadeIn delay={0}>
+                <HeroSection />
+            </FadeIn>
 
+            <FadeIn delay={0.1}>
+                <WomenSection />
+            </FadeIn>
 
+            <FadeIn delay={0.2}>
+                <TrendingNow />
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+                <ShopForMen />
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+                <FootwearSection />
+            </FadeIn>
+
+            <FadeIn delay={0.5}>
+                <PromoBanner />
+            </FadeIn>
         </>
-
     );
 }
-
-
