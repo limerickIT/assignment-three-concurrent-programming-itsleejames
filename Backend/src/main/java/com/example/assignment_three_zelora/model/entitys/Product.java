@@ -50,7 +50,6 @@ public class Product implements Serializable {
     @Column(name = "feature_image")
     private String featureImage;
 
-    // MUST IGNORE THESE OTHERWISE JSON LOOP 💥
     @JsonIgnore
     @OneToMany(mappedBy = "productId")
     private List<Orderitem> orderitemList;

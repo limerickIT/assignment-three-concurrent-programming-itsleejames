@@ -23,17 +23,16 @@ public class ProductSearchService {
         this.productRepository = productRepository;
     }
 
-    // 🔥 NEW — returns ALL products
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // 🔥 NEW — returns all products for a category
     public List<Product> getProductsByCategory(Integer categoryId) {
         return productRepository.findByCategoryId_CategoryId(categoryId);
     }
 
-    // 🔥 Search engine
+    //  Search engine
     public List<Product> search(
             String name,
             String category,
