@@ -8,6 +8,7 @@ import CategoryProductsPage from "./pages/CategoryProductsPage";
 import CartPage from "./pages/CartPage.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import ComparePage from "./pages/ComparePage.jsx";
 
 export default function AppRoutes() {
     return (
@@ -19,9 +20,7 @@ export default function AppRoutes() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
-
-
-
+            <Route path="/compare" element={<ComparePage />} />
         </Routes>
     );
 }
