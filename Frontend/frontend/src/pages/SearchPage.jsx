@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import ProductTable from "../components/search/ProductTable";
 
 const SearchPage = () => {
+    const [params] = useSearchParams();
+    const initialQuery = params.get("query") || "";
+
     const [query, setQuery] = useState({
-        name: "",
+        name: initialQuery,
         category: "",
         minPrice: "",
         maxPrice: "",
@@ -12,6 +16,10 @@ const SearchPage = () => {
     });
 
     const [results, setResults] = useState([]);
+
+    useEffect(() => {
+        if (initialQuery.trim() !== "") handleSearch();
+    }, []);
 
     const handleSearch = async () => {
         try {
@@ -23,6 +31,7 @@ const SearchPage = () => {
             console.error("Search error:", error);
         }
     };
+
 
     return (
         <div className="container py-4">

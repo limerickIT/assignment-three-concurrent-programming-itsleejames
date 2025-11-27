@@ -23,7 +23,6 @@ public class ProductSearchService {
         this.productRepository = productRepository;
     }
 
-
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
@@ -74,7 +73,7 @@ public class ProductSearchService {
         }
 
         if (keywords != null && !keywords.isBlank()) {
-            jpql.append(" AND LOWER(p.description) LIKE LOWER(?").append(index).append(")");
+            jpql.append(" AND p.description LIKE ?").append(index);
             params.add("%" + keywords + "%");
             index++;
         }
