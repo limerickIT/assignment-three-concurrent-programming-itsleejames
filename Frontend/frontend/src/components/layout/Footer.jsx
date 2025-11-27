@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaInstagram, FaTwitter, FaTiktok } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 export default function Footer() {
@@ -25,20 +26,38 @@ export default function Footer() {
                     <Col md={4} sm={6} className="mb-4">
                         <h6 className="footer-heading">Shop</h6>
                         <ul className="footer-list">
-                            <li>Men</li>
-                            <li>Women</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+
+                            <li>
+                                <Link to="/categories/1">Men</Link>
+                            </li>
+                            <li>
+                                <Link to="/categories/2">Women</Link>
+                            </li>
+                            <li>
+                                <Link to="/categories/3">Shoes</Link>
+                            </li>
+                            <li>
+                                <Link to="/categories/4">Accessories</Link>
+                            </li>
+
                         </ul>
                     </Col>
 
                     <Col md={4} sm={6} className="mb-4">
                         <h6 className="footer-heading">Support</h6>
                         <ul className="footer-list">
-                            <li>Contact Us</li>
-                            <li>FAQ</li>
-                            <li>Shipping</li>
-                            <li>Returns</li>
+                            <li>
+                                <Link to="/contact">Contact Us</Link>
+                            </li>
+                            <li>
+                                <Link to="/faq">FAQ</Link>
+                            </li>
+                            <li>
+                                <Link to="/shipping">Shipping</Link>
+                            </li>
+                            <li>
+                                <Link to="/returns">Returns</Link>
+                            </li>
                         </ul>
                     </Col>
                 </Row>
