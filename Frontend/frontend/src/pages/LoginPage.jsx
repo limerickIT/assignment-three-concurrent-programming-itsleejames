@@ -16,7 +16,7 @@ export default function LoginPage() {
         }
 
         setError("");
-        alert("Login submitted! (Frontend only)");
+        alert("Login Coming Soon!");
     };
 
     return (
