@@ -7,6 +7,7 @@ import FootwearSection from "../components/layout/FootwearSection.jsx";
 import PromoBanner from "../components/layout/PromoBanner.jsx";
 
 import FadeIn from "../components/animations/FadeIn";
+import FAQPage from "./FAQPage.jsx";
 
 export default function HomePage() {
     return (
@@ -33,6 +34,13 @@ export default function HomePage() {
 
             <FadeIn delay={0.5}>
                 <PromoBanner />
+            </FadeIn>
+
+            <FadeIn delay={0.5}>
+
+
+            <FAQPage />
+
             </FadeIn>
         </>
     );
