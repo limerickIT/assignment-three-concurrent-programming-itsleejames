@@ -48,6 +48,8 @@ export default function MainNavbar() {
                         <Nav.Link as={Link} to="/categories/1">Men</Nav.Link>
                         <Nav.Link as={Link} to="/categories/2">Women</Nav.Link>
                         <Nav.Link as={Link} to="/categories">Categories</Nav.Link>
+                        <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+
 
                         <Nav.Link as={Link} to="/login" className="ms-3">
                             <FaUser size={18} />

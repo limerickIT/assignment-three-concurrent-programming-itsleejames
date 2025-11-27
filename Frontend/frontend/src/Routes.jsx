@@ -10,6 +10,9 @@ import ProductPage from "./pages/ProductPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import ComparePage from "./pages/ComparePage.jsx";
 import FAQPage from "./pages/FAQPage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
+import ShippingPage from "./pages/ShippingPage.jsx";
+import ReturnsPage from "./pages/ReturnsPage.jsx";
 
 export default function AppRoutes() {
     return (
@@ -23,6 +26,9 @@ export default function AppRoutes() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/compare" element={<ComparePage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/shipping" element={<ShippingPage />} />
+            <Route path="/returns" element={<ReturnsPage />} />
         </Routes>
     );
 }

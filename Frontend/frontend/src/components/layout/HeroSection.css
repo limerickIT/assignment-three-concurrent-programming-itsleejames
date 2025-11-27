@@ -37,7 +37,11 @@
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     letter-spacing: 2px;
+}
+
+a {
+    margin-top: 1rem;
 }

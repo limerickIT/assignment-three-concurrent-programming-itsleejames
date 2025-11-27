@@ -64,7 +64,7 @@ export default function Footer() {
             </Container>
 
             <div className="footer-bottom">
-                <p className="m-0">© {new Date().getFullYear()} Zelora. All rights reserved.</p>
+                <p className="m-0">© {new Date().getFullYear()} Zelora. All rights reserved<br/>Web Dev & Design by Lee Heffernan - K00297799.</p>
             </div>
         </footer>
     );

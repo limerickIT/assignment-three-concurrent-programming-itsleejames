@@ -1,0 +1,97 @@
+.shipping-wrapper {
+    padding-top: 120px;
+    font-family: "Poppins", sans-serif;
+}
+
+.shipping-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 20px 60px;
+}
+
+.shipping-title {
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.shipping-subtitle {
+    text-align: center;
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+/* Sections */
+.shipping-section {
+    margin-bottom: 45px;
+}
+
+.shipping-section h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.shipping-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.shipping-card {
+    flex: 1;
+    min-width: 260px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e9e9e9;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: 0.25s ease;
+}
+
+.shipping-card:hover {
+    transform: translateY(-4px);
+    border-color: #111;
+}
+
+.shipping-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.shipping-card p {
+    font-size: 15px;
+    color: #555;
+}
+
+.tag {
+    display: inline-block;
+    margin-top: 12px;
+    background: #111;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Lists */
+.shipping-list {
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.shipping-list li {
+    margin-bottom: 8px;
+    color: #444;
+    line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .shipping-card {
+        min-width: 100%;
+    }
+}
