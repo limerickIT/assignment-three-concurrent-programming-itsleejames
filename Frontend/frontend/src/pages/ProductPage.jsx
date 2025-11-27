@@ -19,13 +19,12 @@ export default function ProductPage() {
                 setLoading(true);
                 setError(null);
 
-                // Load product detail (reviews included!)
                 const res = await axios.get(
                     `http://localhost:8080/api/products/${id}/detail`
                 );
 
                 setDetail(res.data);
-                setReviews(res.data.reviews || []); // <-- FIXED
+                setReviews(res.data.reviews || []);
             } catch (err) {
                 console.error(err);
                 setError("Unable to load product.");
@@ -34,7 +33,6 @@ export default function ProductPage() {
             }
         };
 
-
         loadData();
     }, [id]);
 
@@ -42,13 +40,32 @@ export default function ProductPage() {
     if (error) return <p className="text-center text-danger mt-5">{error}</p>;
     if (!detail) return <p className="text-center mt-5">No product found.</p>;
 
+    // Extract values from backend DTO
+    const {
+        totalReviews,
+        averageRating,
+        stockMessage,
+        availableQuantity,
+        manufacturer,
+        categoryName,
+        sustainabilityRating
+    } = detail;
+
     const imageUrl = detail.featureImage
         ? `http://localhost:8080/images/thumbs/${detail.productId}/${detail.featureImage}`
         : "/fallback.jpg";
 
+    // Stock levels colour styling
+    const getStockColor = () => {
+        if (stockMessage.toLowerCase().includes("out")) return "text-danger fw-bold";
+        if (stockMessage.toLowerCase().includes("low")) return "text-warning fw-bold";
+        return "text-success fw-bold";
+    };
+
     return (
         <Container className="py-5">
             <Row>
+                {/* LEFT COLUMN */}
                 <Col md={6}>
                     <Card className="shadow-sm">
                         <Card.Img
@@ -59,30 +76,80 @@ export default function ProductPage() {
                     </Card>
                 </Col>
 
+                {/* RIGHT COLUMN */}
                 <Col md={6}>
                     <h2 className="fw-bold">{detail.productName}</h2>
-                    <p>{detail.description}</p>
+                    <p className="text-muted">{detail.description}</p>
 
-                    <h4 className="text-success">€{detail.price}</h4>
+                    <h3 className="text-success fw-bold">€{detail.price}</h3>
 
-                    <Button variant="primary" className="me-2">Add to Cart</Button>
+                    <div className="d-flex gap-2 mb-4">
+                        <Button variant="primary">Add to Cart</Button>
 
-                    <Button
-                        variant="outline-secondary"
-                        onClick={() => addToCompare(detail)}
-                    >
-                        Compare
-                    </Button>
+                        <Button
+                            variant="outline-secondary"
+                            onClick={() => addToCompare(detail)}
+                        >
+                            Compare
+                        </Button>
+                    </div>
+
+                    {/* --- STOCK INFO  --- */}
+                    <div className="mb-3 p-3 rounded border bg-light">
+                        <p className={`mb-1 ${getStockColor()}`}>{stockMessage}</p>
+
+                        {availableQuantity > 0 && (
+                            <p className="text-muted mb-1">
+                                {availableQuantity} units available
+                            </p>
+                        )}
+                    </div>
+
+                    {/* --- Supllier etc --- */}
+                    <div className="mb-4 p-3 rounded border bg-white shadow-sm">
+                        {manufacturer && (
+                            <p className="mb-1">
+                                <strong>Manufacturer:</strong> {manufacturer}
+                            </p>
+                        )}
+
+                        {categoryName && (
+                            <p className="mb-1">
+                                <strong>Category:</strong> {categoryName}
+                            </p>
+                        )}
+
+                        {sustainabilityRating && (
+                            <p className="mb-0">
+                                <strong>Sustainability Score:</strong>{" "}
+                                {sustainabilityRating} / 5
+                            </p>
+                        )}
+                    </div>
+
+                    {/* --- RATING SUMMARY --- */}
+                    <div className="mb-4">
+                        {totalReviews > 0 ? (
+                            <p className="mb-0">
+                                ⭐ <strong>{averageRating.toFixed(1)}</strong> / 5{" "}
+                                <span className="text-muted">
+                                    ({totalReviews} reviews)
+                                </span>
+                            </p>
+                        ) : (
+                            <p className="text-muted">No reviews yet.</p>
+                        )}
+                    </div>
                 </Col>
             </Row>
 
-            {/* REVIEWS SECTION */}
+            {/* --- REVIEWS  --- */}
             <Row className="mt-5">
                 <Col md={12}>
                     <h3 className="fw-bold mb-3">Customer Reviews</h3>
 
                     {!reviews || reviews.length === 0 ? (
-                        <p className="text-muted">No reviews found with rating 3 or higher.</p>
+                        <p className="text-muted">No reviews found with rating 3+.</p>
                     ) : (
                         reviews.map((r, index) => (
                             <Card className="mb-3 shadow-sm" key={index}>
